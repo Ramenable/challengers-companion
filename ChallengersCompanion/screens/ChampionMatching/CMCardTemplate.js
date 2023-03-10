@@ -21,7 +21,7 @@ const CMQ1 = ({navigation}) => {
                 style={{
                 textAlign: 'center',
                 fontSize: 45,
-                fontWeight: '400',
+                fontWeight: '200',
                 color: '#111',
                 marginTop: 40,
                 marginBottom: 80,
@@ -29,38 +29,9 @@ const CMQ1 = ({navigation}) => {
                 How difficult do you want your champion to be?
             </Text>
 
-            <View style={{alignItems: 'center'}}>
-                <Text
-                        style={{
-                        textAlign: 'center',
-                        fontSize: 30,
-                        fontWeight: '400',
-                        color: '#111',
-                        marginBottom: 15,
-                        }}>
-                        Easy
-                    </Text>
-                    <Text
-                        style={{
-                        textAlign: 'center',
-                        fontSize: 30,
-                        fontWeight: '400',
-                        color: '#111',
-                        marginBottom: 15,
-                        }}>
-                        Medium
-                    </Text>
-                    <Text
-                        style={{
-                        textAlign: 'center',
-                        fontSize: 30,
-                        fontWeight: '400',
-                        color: '#111',
-                        marginBottom: 15,
-                        }}>
-                        Hard
-                    </Text>
-            </View>
+            <BasicButton label={"Easy"} color={'#27A8F0'} onPress={() => navigation.navigate("LoginScreen")} />
+            <BasicButton label={"Medium"} color={'#D4AF37'} onPress={() => navigation.navigate("LoginScreen")} />
+            <BasicButton label={"Hard"} color={'#E3242B'} onPress={() => navigation.navigate("LoginScreen")} />
 
             <BasicButton label={"Log Out"} color={'#FFCCCB'} onPress={() => navigation.navigate("LoginScreen")} />
           </ImageBackground>
