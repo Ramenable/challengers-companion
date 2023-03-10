@@ -12,7 +12,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import BasicButton from '../components/BasicButton';
 import Input from '../components/Input';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
     return (
     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
         <View style={{paddingHorizontal: 25}}>
@@ -74,7 +74,7 @@ const LoginScreen = () => {
             fieldButtonFunction={() => {}}
           />
           
-          <BasicButton label={"Login"} onPress={() => {}} />
+          <BasicButton label={"Login"} color={"#AD40AF"} onPress={() => navigation.navigate("CMStartScreen")} />
         </View>
     </SafeAreaView>
     );
