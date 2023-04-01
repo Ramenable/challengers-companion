@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
 import CMStartScreen from '../screens/ChampionMatching/CMStartScreen';
 import CMTemplate from '../screens/ChampionMatching/CMCardTemplate';
+import CMResult from '../screens/ChampionMatching/CMResult';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +13,8 @@ const FeatureStack = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="CMStartScreen" component={CMStartScreen} />
-      <Stack.Screen name="CMQ1" component={CMTemplate} />
+      <Stack.Screen name="CMCardTemplate" component={CMTemplate} />
+      <Stack.Screen name='CMResult' component={CMResult} />
     </Stack.Navigator>
   );
 };

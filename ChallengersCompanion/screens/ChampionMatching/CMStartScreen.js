@@ -19,16 +19,19 @@ const CMStartScreen = ({navigation}) => {
             <Text
                 style={{
                 textAlign: 'center',
-                fontSize: 45,
+                fontFamily: 'Avenir',
                 fontWeight: '600',
+                fontSize: 50,
                 color: '#111',
+                textShadowColor: '#000',
+                textShadowRadius: 3,
                 marginTop: 80,
                 marginBottom: 80,
                 }}>
                 Champion Matching
             </Text>
             
-            <BasicButton label={"Let's Go"} color={'#AEF359'} onPress={() => navigation.navigate("CMQ1")} />
+            <BasicButton label={"Let's Go"} color={'#AEF359'} onPress={() => navigation.navigate("CMCardTemplate")} />
             <BasicButton label={"Log Out"} color={'#FFCCCB'} onPress={() => navigation.navigate("LoginScreen")} />
           </ImageBackground>
         </View>
