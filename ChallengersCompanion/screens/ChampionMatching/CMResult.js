@@ -5,7 +5,9 @@ import {
   StyleSheet,
   FlatList,
   Text,
-  Image
+  Image,
+  Pressable,
+  Alert
 } from 'react-native';
 import { useRoute } from "@react-navigation/native"
 import { db } from '../../Firebase/firebase';
@@ -13,14 +15,8 @@ import { collection, query, where, and, or, getDocs } from "firebase/firestore";
 
 import { CHAMPION_IMAGES } from '../../constants/championImages';
 import IconButton from '../../components/IconButton';
-
-const DATA = [
-  { id: '1', name: 'Garen', title: 'The Might of Demacia', photo: require('../../assets/Champions/ZyraBG.png'), height: 350 },
-  { id: '2', name: 'Darius', photo: require('../../assets/Champions/DariusBG.png'), height: 50 },
-  { id: '3', name: 'Sett', photo: require('../../assets/Champions/SettBG.png'), height: 50 },
-  { id: '4', name: 'Aatrox', photo: require('../../assets/Champions/AatroxBG.png'), height: 50 },
-  { id: '5', name: 'Jax', photo: require('../../assets/Champions/JaxBG.png'), height: 50 },
-];
+import { Icon } from 'react-native-elements';
+import { FAB } from "react-native-elements";
 
 const styles = StyleSheet.create({
     buttonsContainer: {
@@ -59,43 +55,27 @@ const styles = StyleSheet.create({
     },
     name: {
         textAlign: 'center',
-        fontSize: 40,
-        fontWeight: 700,
+        fontSize: 20,
+        fontWeight: 500,
         color: '#fff',
         fontFamily: 'Avenir',
         textShadowColor: '#000',
         textShadowRadius: 10,
         marginTop: 5,
+        marginBottom: 5,
     },
     title: {
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: 15,
         fontFamily: 'Avenir',
         fontWeight: '500',
         color: '#fff',
         textShadowColor: '#000',
         textShadowRadius: 10,
         marginTop: 5,
+        marginBottom: 5,
     },
 });
-
-const Item = ({ name, title, photo, height }) => (
-  <View style={[styles.item, { height }]}>
-    <Image
-      style={styles.image}
-      source={photo}
-      resizeMode="cover"
-    />
-    <View style={styles.photoDescriptionContainer}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.title}>{title}</Text>
-    </View>
-  </View>
-);
-
-const renderItem = ({ item }) => (
-  <Item name={item.name} title={item.title} photo={item.photo} height={item.height} />
-);
 
 const CMResult = ({navigation}) => {
     // send survey results to this page
@@ -118,7 +98,6 @@ const CMResult = ({navigation}) => {
         champClass = "Support";
     }
 
-    console.log(champClass);
     var backstory1 = '';
     var backstory2 = '';
     var backstory3 = '';
@@ -159,6 +138,8 @@ const CMResult = ({navigation}) => {
         backstory8 = 'Bandle City';
     }
 
+    const [sendName, setSendName] = useState([]);
+
     const [champList, setChampList] = useState([]);
     readData = async () => {
         const q = query(collection(db, "champions"),
@@ -191,11 +172,12 @@ const CMResult = ({navigation}) => {
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             champName = doc.data().id;
+            setSendName(sendName => [...sendName, champName]);
             staticPhoto = CHAMPION_IMAGES[champName].uri;
             if (i == 1) {
-                setChampList(champList => [...champList, { id: i, name: champName, photo: staticPhoto, height: 350 }])
+                setChampList(champList => [...champList, { id: i, name: champName, photo: staticPhoto, height: 200 }])
             } else {
-                setChampList(champList => [...champList, { id: i, name: champName, photo: staticPhoto, height: 50 }])
+                setChampList(champList => [...champList, { id: i, name: champName, photo: staticPhoto, height: 200 }])
             }
             i++;
         });
@@ -204,6 +186,31 @@ const CMResult = ({navigation}) => {
         // write your code here, it's like componentWillMount
         readData();
     }, [])
+
+    const Item = ({ name, photo, height, id }) => (
+        <View style={[styles.item, { height }]}>
+          <Pressable style={[styles.item, { height }]} onPress={() =>
+            //   Alert.alert('image clicked: ' + {name})
+              navigation.navigate("GuideScreen", {
+                name: sendName,
+                id: id
+              })
+              }>
+              <Image
+              style={styles.image}
+              source={photo}
+              resizeMode="cover"
+              />
+              <View style={styles.photoDescriptionContainer}>
+                  <Text style={styles.name}>{name}</Text>
+              </View>
+          </Pressable>
+        </View>
+      );
+
+      const renderItem = ({ item }) => (
+        <Item name={item.name} photo={item.photo} height={item.height} id={item.id} />
+      );
 
     return (
     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
@@ -214,15 +221,22 @@ const CMResult = ({navigation}) => {
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.list}
           />
+            <FAB
+                title='Start Over'
+                placement='right'
+                size='small'
+                buttonStyle={{ backgroundColor: 'black'}}
+                onPress={() => navigation.navigate("LoginScreen")}
+            />
         </View>
-        <View style={styles.buttonsContainer}>
-            <IconButton
+        {/* <View style={styles.buttonsContainer}> */}
+            {/* <IconButton
             name="close"
             onPress={() => navigation.navigate("LoginScreen")}
             color="white"
             backgroundColor="#E5566D"
-            />
-        </View>
+            /> */}
+        {/* </View> */}
     </SafeAreaView>
     );
 };
