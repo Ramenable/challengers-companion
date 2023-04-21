@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,6 +7,8 @@ import {
   Text,
   Image
 } from 'react-native';
+import { database } from '../../Firebase/firebase';
+import { ref, onValue } from 'firebase/database';
 
 import IconButton from '../../components/IconButton';
 
@@ -94,6 +96,15 @@ const renderItem = ({ item }) => (
 );
 
 const CMResult = ({navigation}) => {
+    const [champion, setChampion] = useState('jed');
+    readData = () => {
+        const users = ref(database, '/');
+        onValue(users, (snapshot) => {
+            const data = snapshot.val();
+            console.log(data);
+        });
+    }
+
     return (
     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
         <View>
@@ -103,11 +114,18 @@ const CMResult = ({navigation}) => {
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.list}
           />
+          <Text>{champion}</Text>
         </View>
         <View style={styles.buttonsContainer}>
             <IconButton
             name="close"
             onPress={() => navigation.navigate("LoginScreen")}
+            color="white"
+            backgroundColor="#E5566D"
+            />
+             <IconButton
+            name="close"
+            onPress={() => readData()}
             color="white"
             backgroundColor="#E5566D"
             />

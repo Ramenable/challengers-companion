@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "react-native": "^0.71.4",
+    "react-native-deck-swiper": "^2.0.13",
     "react-native-swipe-gestures": "^1.0.5",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-vector-icons": "^9.2.0",
+    "react-native-view-overflow": "^0.0.5"
   }
 }
