@@ -1,4 +1,5 @@
 import React from 'react';
+import { Linking } from 'react-native';
 import {
   SafeAreaView,
   View,
@@ -8,14 +9,11 @@ import {
   Image
 } from 'react-native';
 
-import IconButton from '../../components/IconButton';
+import BasicButton from '../components/BasicButton';
+import IconButton from '../components/IconButton';
 
 const DATA = [
-  { id: '1', name: 'Garen', title: 'The Might of Demacia', photo: require('../../assets/Champions/GarenBG.png'), height: 350 },
-  { id: '2', name: 'Darius', photo: require('../../assets/Champions/DariusBG.png'), height: 50 },
-  { id: '3', name: 'Sett', photo: require('../../assets/Champions/SettBG.png'), height: 50 },
-  { id: '4', name: 'Aatrox', photo: require('../../assets/Champions/AatroxBG.png'), height: 50 },
-  { id: '5', name: 'Jax', photo: require('../../assets/Champions/JaxBG.png'), height: 50 },
+  { id: '1', name: 'Garen', title: 'The Might of Demacia', photo: require('../assets/Champions/GarenBG.png'), height: 700 }
 ];
 
 const styles = StyleSheet.create({
@@ -85,6 +83,12 @@ const Item = ({ name, title, photo, height }) => (
     <View style={styles.photoDescriptionContainer}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.title}>{title}</Text>
+        <BasicButton label={name + " Guide"} color={"#AD40AF"} 
+          onPress={() => Linking.openURL('https://app.mobalytics.gg/lol/champions/garen/build')}
+        />
+        <BasicButton label={"Beginner Guide"} color={"#AD40AF"} 
+          onPress={() => Linking.openURL('https://mobalytics.gg/blog/absolute-beginners-guide-to-league-of-legends/')}
+        />
     </View>
   </View>
 );
@@ -93,7 +97,7 @@ const renderItem = ({ item }) => (
   <Item name={item.name} title={item.title} photo={item.photo} height={item.height} />
 );
 
-const CMResult = ({navigation}) => {
+const ExternalGuideScreen = ({navigation}) => {
     return (
     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
         <View>
@@ -102,12 +106,6 @@ const CMResult = ({navigation}) => {
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.list}
-          />
-          <IconButton
-            name="Guide"
-            onPress={() => navigation.navigate("ExternalGuideScreen")}
-            color="white"
-            backgroundColor="#E5566D"
           />
         </View>
         <View style={styles.buttonsContainer}>
@@ -122,4 +120,4 @@ const CMResult = ({navigation}) => {
     );
 };
 
-export default CMResult;
+export default ExternalGuideScreen;

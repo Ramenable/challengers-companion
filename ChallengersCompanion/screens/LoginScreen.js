@@ -75,6 +75,7 @@ const LoginScreen = ({navigation}) => {
           />
           
           <BasicButton label={"Login"} color={"#AD40AF"} onPress={() => navigation.navigate("CMStartScreen")} />
+          <BasicButton label={"Jedd"} color={"#AD40AF"} onPress={() => navigation.navigate("ExternalGuideScreen")} />
         </View>
     </SafeAreaView>
     );
