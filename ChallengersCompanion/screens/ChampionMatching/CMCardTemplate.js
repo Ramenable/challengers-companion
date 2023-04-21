@@ -45,9 +45,6 @@ const CMCardTemplate = ({navigation}) => {
     const [attributes, setAttributes] = useState([]);
     const useSwiper = useRef(null).current
 
-    // const handleOnSwipedLeft = () => useSwiper.swipeLeft()
-    // const handleOnSwipedBottom = () => useSwiper.swipeBottom()
-    // const handleOnSwipedRight = () => useSwiper.swipeRight()
     return (
     <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
         <View style={styles.swiperContainer}>
@@ -55,11 +52,10 @@ const CMCardTemplate = ({navigation}) => {
                 ref={useSwiper}
                 cards={surveyCards}
                 renderCard={card => <Card card={card} />}
-                onSwiped={(cardIndex) => swipeCt < 7 ? setSwipeCt(cardIndex + 1) : setSwipeCt(cardIndex)}
-                onSwipedLeft={(cardIndex) => setAttributes(attributes => [...attributes, 0])}
-                onSwipedBottom={(cardIndex) => setAttributes(attributes => [...attributes, 1])}
-                onSwipedRight={(cardIndex) => setAttributes(attributes => [...attributes, 2])}
-                onSwipedAll={() => navigation.navigate("CMResult")}
+                onSwiped={(cardIndex) => swipeCt < 20 ? setSwipeCt(cardIndex + 1) : setSwipeCt(cardIndex)}
+                onSwipedLeft={(cardIndex) => setAttributes(attributes => [...attributes, surveyCards[swipeCt].result[0]])}
+                onSwipedRight={(cardIndex) => setAttributes(attributes => [...attributes, surveyCards[swipeCt].result[1]])}
+                onSwipedAll={() => navigation.navigate("CMResult", { results: attributes })}
                 cardIndex={0}
                 backgroundColor={'transparent'}
                 stackSize={3}
@@ -69,7 +65,7 @@ const CMCardTemplate = ({navigation}) => {
                 overlayLabels={{
                 left: {
                     title: 'EASY',
-                    element: <OverlayLabel label={surveyCards[swipeCt].overlayText[0]} color="#4CCC93" />,
+                    element: <OverlayLabel label={surveyCards[swipeCt].overlayText[0]} color="#E5566D" />,
                     style: {
                     wrapper: {
                         ...styles.overlayWrapper,
@@ -79,23 +75,14 @@ const CMCardTemplate = ({navigation}) => {
                       },
                     },
                 },
-                bottom: {
-                    title: 'MEDIUM',
-                    element: <OverlayLabel label={surveyCards[swipeCt].overlayText[1]} color="#FDDA0D" />,
-                    style: {
-                    wrapper: {
-                        ...styles.overlayWrapper
-                      },
-                    },
-                },
                 right: {
                     title: 'HARD',
-                    element: <OverlayLabel label={surveyCards[swipeCt].overlayText[2]} color="#E5566D" />,
+                    element: <OverlayLabel label={surveyCards[swipeCt].overlayText[1]} color="#4CCC93" />,
                     style: {
                     wrapper: {
                         ...styles.overlayWrapper,
                         alignItems: 'flex-start',
-                        marginLeft: -70,
+                        marginLeft: -10,
                         marginTop: 30,
                       },
                     },
@@ -106,9 +93,8 @@ const CMCardTemplate = ({navigation}) => {
         <View style={styles.buttonsContainer}>
             <Text
                 style= {styles.tipText}>
-                Try swiping up, down, and right!
+                Try swiping left and right!
             </Text>
-            <Text> {attributes} </Text>
             <IconButton
             name="close"
             onPress={() => navigation.navigate("LoginScreen")}
