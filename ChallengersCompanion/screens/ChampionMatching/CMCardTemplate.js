@@ -58,6 +58,8 @@ const CMCardTemplate = ({navigation}) => {
                 onSwipedAll={() => navigation.navigate("CMResult", { results: attributes })}
                 cardIndex={0}
                 backgroundColor={'transparent'}
+                disableTopSwipe={true}
+                disableBottomSwipe={true}
                 stackSize={3}
                 showSecondCard
                 animateOverlayLabelsOpacity

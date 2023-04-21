@@ -156,7 +156,7 @@ export const CHAMPION_IMAGES = {
         uri: require('../assets/Champions/KaisaBG.png')
     },
     "Kalista": {
-        uri: require('../assets/Champions/KarmaBG.png')
+        uri: require('../assets/Champions/KalistaBG.png')
     },
     "Karthus": {
         uri: require('../assets/Champions/KarthusBG.png')
@@ -348,7 +348,7 @@ export const CHAMPION_IMAGES = {
         uri: require('../assets/Champions/SionBG.png')
     },
     "Sivir": {
-        uri: require('../assets/Champions/SkarnerBG.png')
+        uri: require('../assets/Champions/SivirBG.png')
     },
     "Sona": {
         uri: require('../assets/Champions/SonaBG.png')
