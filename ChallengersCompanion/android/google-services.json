@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "269239082795",
+    "firebase_url": "https://companion-3145c-default-rtdb.firebaseio.com",
+    "project_id": "companion-3145c",
+    "storage_bucket": "companion-3145c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269239082795:android:5a0d789566d7e614f86f6e",
+        "android_client_info": {
+          "package_name": "challenger.companion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269239082795-l4o77ccrss54av74g3f8jemnkmu9dggm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDujciuY-j5CF1jUysh6LoKDWqn8qKV7uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269239082795-l4o77ccrss54av74g3f8jemnkmu9dggm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
