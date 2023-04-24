@@ -63,7 +63,7 @@ const CMCardTemplate = ({navigation}) => {
                 stackSize={3}
                 showSecondCard
                 animateOverlayLabelsOpacity
-                horizontalThreshold={30}
+                horizontalThreshold={200}
                 overlayLabels={{
                 left: {
                     title: 'EASY',
@@ -84,7 +84,7 @@ const CMCardTemplate = ({navigation}) => {
                     wrapper: {
                         ...styles.overlayWrapper,
                         alignItems: 'flex-start',
-                        marginLeft: -10,
+                        marginLeft: -60,
                         marginTop: 30,
                       },
                     },
@@ -95,7 +95,7 @@ const CMCardTemplate = ({navigation}) => {
         <View style={styles.buttonsContainer}>
             <Text
                 style= {styles.tipText}>
-                Try swiping left and right!
+                Try *slowly* swiping left and right!
             </Text>
             <IconButton
             name="close"

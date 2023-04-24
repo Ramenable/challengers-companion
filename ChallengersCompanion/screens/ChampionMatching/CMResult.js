@@ -90,12 +90,13 @@ const CMResult = ({navigation}) => {
     var champClass = 'Fighter';
     if (results[1] == 'M') {
         champClass = results[3];
-    } else {
+    } 
+    if (results[1] == 'R') {
         champClass = results[4];
     }
 
-    if (support == 'Y') {
-        champClass = "Support";
+    if (results[5] == 'Y') {
+        champClass = 'Support';
     }
 
     var backstory1 = '';
@@ -104,8 +105,6 @@ const CMResult = ({navigation}) => {
     var backstory4 = '';
     var backstory5 = '';
     var backstory6 = '';
-    var backstory7 = '';
-    var backstory8 = '';
 
     for (i=7; i < 20; i++) {
         if (results[i] && results[i] != '' && backstory1 == ''){
@@ -120,22 +119,26 @@ const CMResult = ({navigation}) => {
             backstory5 = results[i];
         } else if (results[i] && results[i] != '' && backstory6 == '') {
             backstory6 = results[i];
-        } else if (results[i] && results[i] != '' && backstory7 == '') {
-            backstory7 = results[i];
-        } else if (results[i] && results[i] != '' && backstory8 == '') {
-            backstory8 = results[i];
         }
     }
 
-    if (!backstory1 || !backstory2 || !backstory3 || !backstory4 || !backstory5 || !backstory6 || !backstory7 || !backstory8) {
+    if (!backstory1) {
         backstory1 = 'Demacia';
+    }
+    if (!backstory2) {
         backstory2 = 'Freljord';
+    }
+    if (!backstory3) {
         backstory3 = 'Ionia';
+    }
+    if (!backstory4) {
         backstory4 = 'Shurima';
-        backstory5 = 'Zaun';
-        backstory6 = 'Piltover';
-        backstory7 = 'Targon';
-        backstory8 = 'Bandle City';
+    }
+    if (!backstory5) {
+        backstory5 = 'Runeterra';
+    }
+    if (!backstory6) {
+        backstory6 = 'Zaun';
     }
 
     const [sendName, setSendName] = useState([]);
@@ -147,8 +150,11 @@ const CMResult = ({navigation}) => {
                     where("difficulty", "==", difficulty),
                     where("meleeRanged", "==", meleeRanged),
                     // where("collaboration", "==", collaboration),
-                    where("gender", "==", gender),
-                    where("support", "==", support),
+                    // where("support", "==", support),
+                    or(
+                        where("gender", "==", gender),
+                        where("gender", "==", "N"),
+                    ),
                     or(
                         where("class1", "==", champClass),
                         where("class2", "==", champClass),
@@ -160,9 +166,6 @@ const CMResult = ({navigation}) => {
                         where("backstory", "==",backstory4),
                         where("backstory", "==",backstory5),
                         where("backstory", "==",backstory6),
-                        where("backstory", "==",backstory7),
-                        where("backstory", "==",backstory8),
-                        where("backstory", "==","Runeterra"),
                     )
                 )
             );

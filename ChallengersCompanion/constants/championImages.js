@@ -158,6 +158,9 @@ export const CHAMPION_IMAGES = {
     "Kalista": {
         uri: require('../assets/Champions/KalistaBG.png')
     },
+    "Karma": {
+        uri: require('../assets/Champions/KarmaBG.png')
+    },
     "Karthus": {
         uri: require('../assets/Champions/KarthusBG.png')
     },
@@ -185,7 +188,7 @@ export const CHAMPION_IMAGES = {
     "Kled": {
         uri: require('../assets/Champions/KledBG.png')
     },
-    "Kogmaw": {
+    "Kog'Maw": {
         uri: require('../assets/Champions/KogmawBG.png')
     },
     "KSante": {
@@ -293,7 +296,7 @@ export const CHAMPION_IMAGES = {
     "Rammus": {
         uri: require('../assets/Champions/RammusBG.png')
     },
-    "Reksai": {
+    "Rek'Sai": {
         uri: require('../assets/Champions/ReksaiBG.png')
     },
     "Rell": {
